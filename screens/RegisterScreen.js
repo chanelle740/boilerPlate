@@ -8,25 +8,25 @@ import * as SecureStore from 'expo-secure-store';
 import {AuthContext} from '../hooks/AuthContext';
 
 
- export default function LoginScreen({navigation}){
+ export default function RegisterScreen({navigation}){
 
     const setIsLoggedIn = React.useContext(AuthContext).setIsLoggedIn;
 
     const { handleSubmit, handleChange, values } = useFormik({
         initialValues: {
+          firstName:"",
+          lastName:"",
           email: "",
           password: "",
         },
         onSubmit: async (values) => {
-          console.log(values);
             try {
-                if (!values.email && !values.password) {
-                    Alert.alert("Please enter your email and password");
+                if (!values) {
+                    Alert.alert("Please enter your credentials");
                     return;
                   }
         
-                  //change the url to your respective PC's IP address and port number
-                  const response = await fetch("http://192.168.1.40:5000/api/user/login", {
+                  const response = await fetch("http://192.168.1.40:5000/api/user/register", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -36,19 +36,17 @@ import {AuthContext} from '../hooks/AuthContext';
                 body: JSON.stringify(values),
         
               });
-
+        
               if(!response.ok){
-                Alert.alert("Invalid email or password");
+                Alert.alert("Invalid credentials");
                 return;
                 }
                 const data = await response.json();
                 
-                Alert.alert("Success","Successfully logged in");
-                if(data.accessToken){
-                    await SecureStore.setItemAsync("auth-token", data.accessToken);
-                    setIsLoggedIn(true);
-                    // navigation.navigate("")
-                }
+                Alert.alert("Success","Successfully created account");
+
+                navigation.navigate("Login")
+               
             } catch (error) {
                 console.log(error);
             }
@@ -70,6 +68,22 @@ import {AuthContext} from '../hooks/AuthContext';
       </View>
       <View style={styles.loginForm}>
         <View>
+        <TextInput
+            style={styles.inputStyle}
+            placeholder="First name"
+            value={values.firstName}
+            autoCapitalize="none"
+            onChangeText={handleChange("firstName")}
+            />
+
+<TextInput
+            style={styles.inputStyle}
+            placeholder="Last Name"
+            value={values.lastName}
+            autoCapitalize="none"
+            onChangeText={handleChange("lastName")}
+            />
+
             <TextInput
             style={styles.inputStyle}
             placeholder="Email address"
@@ -86,9 +100,8 @@ import {AuthContext} from '../hooks/AuthContext';
             />
             <Pressable>
                 <View style={styles.submitButton}>
-                    <SubmitButton title ="Login" onPress={()=>handleSubmit()}/>
+                    <SubmitButton title ="Register" onPress={()=>handleSubmit()}/>
                 </View>
-
             </Pressable>
         </View>
 

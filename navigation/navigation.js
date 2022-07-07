@@ -8,6 +8,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { View, TouchableOpacity } from "react-native";
 import LoginScreen from '../screens/LoginScreen';
 import { AuthContext } from '../hooks/AuthContext';
+import RegisterScreen from '../screens/RegisterScreen';
 
 export default function Navigator(){
     const {isLoggedIn, setIsLoggedIn} = useContext(AuthContext);
@@ -33,9 +34,9 @@ export function AuthNavigation(){
     const Stack = createStackNavigator();
 
     return(
-        <Stack.Navigator initialRouteName="Login">
+        <Stack.Navigator initialRouteName="Register">
             <Stack.Screen name="Login" component={LoginScreen} options={{headerShown:false}}/>
-            <Stack.Screen name="Register" component={LoginScreen} options={{headerShown:false}}/>
+            <Stack.Screen name="Register" component={RegisterScreen} options={{headerShown:false}}/>
         </Stack.Navigator>
     )
 
