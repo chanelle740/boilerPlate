@@ -37,7 +37,7 @@ import {AuthContext} from '../hooks/AuthContext';
               });
         
               if(!response.ok){
-        
+    
                 Alert.alert("Invalid email or password");
                 return;
                 }
