@@ -6,6 +6,7 @@ import { useFormik } from "formik";
 import SubmitButton from '../components/SubmitButton';
 import * as SecureStore from 'expo-secure-store';
 import {AuthContext} from '../hooks/AuthContext';
+import { KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native';
 
 
  export default function LoginScreen({navigation}){
@@ -58,17 +59,17 @@ import {AuthContext} from '../hooks/AuthContext';
 
   
     return(
+      <KeyboardAvoidingView behavior={Platform.OS ? "padding" : "height"} style={styles.container}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View>
-        <View>
-        <View>
-        <Text>Login</Text>
-        </View>
-        </View>
+        {/* <View>
+        </View> */}
 
-        <View style={styles.midContainer}>
-           <Text style={styles.midText}>Login to your account</Text>
-      </View>
       <View style={styles.loginForm}>
+        <View style={styles.midContainer}>
+        <Text style={styles.midText}>Login to your account</Text>
+      </View>
+      {/* <Text>Login to your account</Text> */}
         <View>
             <TextInput
             style={styles.inputStyle}
@@ -88,12 +89,12 @@ import {AuthContext} from '../hooks/AuthContext';
                 <View style={styles.submitButton}>
                     <SubmitButton title ="Login" onPress={()=>handleSubmit()}/>
                 </View>
-
             </Pressable>
         </View>
-
       </View>
         </View>
+        </TouchableWithoutFeedback>
+ </KeyboardAvoidingView>
     )
 
  }

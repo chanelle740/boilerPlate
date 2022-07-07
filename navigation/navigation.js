@@ -34,7 +34,7 @@ export function AuthNavigation(){
     const Stack = createStackNavigator();
 
     return(
-        <Stack.Navigator initialRouteName="Register">
+        <Stack.Navigator initialRouteName="Login">
             <Stack.Screen name="Login" component={LoginScreen} options={{headerShown:false}}/>
             <Stack.Screen name="Register" component={RegisterScreen} options={{headerShown:false}}/>
         </Stack.Navigator>

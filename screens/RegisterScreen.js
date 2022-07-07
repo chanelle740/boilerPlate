@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react'
 import Validator from "validatorjs";
-import { Alert, Image, ScrollView, View,Text, Pressable,StyleSheet } from 'react-native';
+import { Alert, Image, ScrollView, View,Text, Pressable,StyleSheet, Platform } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { useFormik } from "formik";
 import SubmitButton from '../components/SubmitButton';
 import * as SecureStore from 'expo-secure-store';
 import {AuthContext} from '../hooks/AuthContext';
+import { Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback } from 'react-native';
 
 
  export default function RegisterScreen({navigation}){
@@ -56,6 +57,8 @@ import {AuthContext} from '../hooks/AuthContext';
 
   
     return(
+        <KeyboardAvoidingView behavior={Platform.OS ? "padding" : "height"} style={styles.container}>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View>
         <View>
         <View>
@@ -64,7 +67,7 @@ import {AuthContext} from '../hooks/AuthContext';
         </View>
 
         <View style={styles.midContainer}>
-           <Text style={styles.midText}>Login to your account</Text>
+           <Text style={styles.midText}>SIgn up your account</Text>
       </View>
       <View style={styles.loginForm}>
         <View>
@@ -107,12 +110,14 @@ import {AuthContext} from '../hooks/AuthContext';
 
       </View>
         </View>
+        </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
     )
 
  }
 
  const styles = StyleSheet.create({
-    container: {
+     container: {
       flex: 1,
       backgroundColor: "#FFFFFF",
       paddingTop: "20%"
