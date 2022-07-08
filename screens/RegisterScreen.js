@@ -57,8 +57,8 @@ import { Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback } from 'react-
 
   
     return(
-        <KeyboardAvoidingView behavior={Platform.OS ? "padding" : "height"} style={styles.container}>
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+   
+   
         <View>
         <View>
         <View>
@@ -79,7 +79,7 @@ import { Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback } from 'react-
             onChangeText={handleChange("firstName")}
             />
 
-<TextInput
+           <TextInput
             style={styles.inputStyle}
             placeholder="Last Name"
             value={values.lastName}
@@ -106,12 +106,16 @@ import { Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback } from 'react-
                     <SubmitButton title ="Register" onPress={()=>handleSubmit()}/>
                 </View>
             </Pressable>
+            <Pressable onPress={() => navigation.navigate('Login')}>
+            <View>
+                  <Text style={styles.noAcc}>Already have an account? Login</Text>
+                </View>
+            </Pressable>
         </View>
 
       </View>
         </View>
-        </TouchableWithoutFeedback>
-        </KeyboardAvoidingView>
+
     )
 
  }
@@ -185,6 +189,12 @@ import { Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback } from 'react-
     caption: {
       color: "#FFFFFF",
     //   fontFamily: "urbanist-bold",
+    },
+    noAcc: {
+      marginTop: 20,
+      alignItems: "center",
+      justifyContent: "center",
+      marginLeft: 60,
     },
   
     // bottomContent: {

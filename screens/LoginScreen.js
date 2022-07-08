@@ -90,6 +90,11 @@ import { KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-
                     <SubmitButton title ="Login" onPress={()=>handleSubmit()}/>
                 </View>
             </Pressable>
+            <Pressable onPress={() => navigation.navigate('Register')}>
+            <View>
+                  <Text style={styles.noAcc}>Have no account? Register</Text>
+                </View>
+            </Pressable>
         </View>
       </View>
         </View>
@@ -170,6 +175,12 @@ import { KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-
     //   fontFamily: "urbanist-bold",
     },
   
+    noAcc: {
+      marginTop: 20,
+      alignItems: "center",
+      justifyContent: "center",
+      marginLeft:60,
+    }
     // bottomContent: {
     //   marginTop: 10,
     //   display: "flex",
